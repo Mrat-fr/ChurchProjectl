@@ -1,0 +1,70 @@
+const translations = {
+    en: {
+      welcome: "Welcome to Our Church",
+      tagline: "A place of worship, community, and faith",
+      aboutTitle: "About Us",
+      aboutText1:
+        "We are a vibrant Eritrean Catholic community in Leeds.",
+      aboutText2:
+        "Our mission is to serve God and our community through faith, love, and unity.",
+      mission: "Our Mission",
+      contactUs: "Contact Us",
+      findUs: "Find Us",
+      address: "Address",
+      phone: "Phone",
+      email: "Email",
+      send: "Send Message",
+      home: "Home",
+      about: "About",
+      contact: "Contact",
+      serviceTimes: "Service Times",
+      sundayMass: "Sunday Mass",
+      weekdayMass: "Weekday Mass",
+      confession: "Confession",
+      bibleStudy: "Bible Study",
+      events: "Events",
+      copyright: "All rights reserved",
+      social: "Follow Us",
+      name: "Name",
+      message: "Message",
+      phoneNumber: "+44 123 456 7890",
+      churchName: "Holy Rosary Catholic Church",
+      ministries: "Ministries",
+      gallery: "Gallery"
+    },
+    ti: {
+      welcome: "ናብ ቤተ ክርስትያንና እንቋዕ ብደሓን መጻእኩም",
+      tagline: "ናይ ጸሎት፣ ሕብረት፣ እምነትን ቦታ",
+      aboutTitle: "ብዛዕባና",
+      aboutText1:
+        "ንሕና ኣብ Leeds እንርከብ ተገዳስነት ዘለዎ ኤርትራዊ ካቶሊካዊ ማሕበረሰብ ኢና።",
+      aboutText2:
+        "ዕላማና ብእምነት፣ ፍቕርን ሓድነትን ንኣምላኽን ማሕበረሰብናን ኣገልግሎት ምሃብ እዩ።",
+      mission: "ዕላማና",
+      contactUs: "ርኸቡና",
+      findUs: "ኣብዚ ኢና",
+      address: "ኣድራሻ",
+      phone: "ቁጽሪ ስልኪ",
+      email: "ኢሜይል",
+      send: "መልእኽቲ ስደድ",
+      home: "መበል",
+      about: "ብዛዕባና",
+      contact: "ርክብ",
+      serviceTimes: "ናይ ኣገልግሎት ሰዓታት",
+      sundayMass: "ናይ ሰንበት ቅዳሴ",
+      weekdayMass: "ናይ ሰሙን ቅዳሴ",
+      confession: "ንስሓ",
+      bibleStudy: "መጽናዕቲ መጽሓፍ ቅዱስ",
+      events: "ፍጻሜታት",
+      copyright: "ኩሉ መሰል ዝተሓለወ እዩ",
+      social: "ስዓቡና",
+      name: "ስም",
+      message: "መልእኽቲ",
+      phoneNumber: "+44 123 456 7890",
+      churchName: "ቅዱስ ሮዘሪያን ቤተክርስትያን",
+      ministries: "ኣገልግሎታት",
+      gallery: "ጋለሪ"
+    }
+  } as const;
+  
+  export default translations;
