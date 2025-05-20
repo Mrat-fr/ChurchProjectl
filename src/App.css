@@ -84,11 +84,20 @@ body {
     cursor: pointer;
     transition: all 0.2s;
     font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
   }
   
   .lang-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: white;
+  }
+  
+  .lang-button:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
   }
   
   .nav-content {
@@ -211,21 +220,30 @@ body {
   
     .header-top {
       padding: 0.5rem 0;
+      display: block;
     }
   
     .header-top-content {
-      flex-direction: column;
-      gap: 0.5rem;
+      justify-content: center;
+      padding: 0 1rem;
     }
   
-    .contact-info {
-      flex-direction: column;
-      gap: 0.5rem;
-      align-items: center;
+    .header-actions {
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
   
-    .contact-divider {
-      display: none;
+    .lang-button {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: white;
+      min-width: 120px;
+    }
+  
+    .lang-button:active {
+      transform: scale(0.98);
     }
   }
   

@@ -106,6 +106,7 @@ export default function Header() {
               onClick={toggleLanguage}
               className="lang-button"
               aria-label={`Switch to ${language === 'en' ? 'Tigrinya' : 'English'}`}
+              title={`Switch to ${language === 'en' ? 'Tigrinya' : 'English'}`}
             >
               {language === 'en' ? 'ትግርኛ' : 'English'}
             </button>
