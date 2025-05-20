@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useState, useEffect, useRef } from 'react';
 
@@ -7,6 +7,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const location = useLocation();
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+    document.body.classList.remove('menu-open');
+  }, [location]);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -14,6 +21,7 @@ export default function Header() {
       if (menuRef.current && !menuRef.current.contains(event.target as Node) &&
           buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);
+        document.body.classList.remove('menu-open');
       }
     }
 
@@ -26,12 +34,57 @@ export default function Header() {
     function handleEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setIsMenuOpen(false);
+        document.body.classList.remove('menu-open');
       }
     }
 
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
+
+  // Handle menu button click
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    // Toggle body scroll lock
+    document.body.classList.toggle('menu-open', !isMenuOpen);
+    // Focus first menu item when opening
+    if (!isMenuOpen && menuRef.current) {
+      setTimeout(() => {
+        const firstLink = menuRef.current?.querySelector('a');
+        firstLink?.focus();
+      }, 100);
+    }
+  };
+
+  // Handle keyboard navigation
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (!isMenuOpen) return;
+
+    const links = Array.from(menuRef.current?.querySelectorAll('a') || []);
+    const currentIndex = links.indexOf(document.activeElement as HTMLAnchorElement);
+    let nextIndex: number;
+    let prevIndex: number;
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        nextIndex = (currentIndex + 1) % links.length;
+        links[nextIndex]?.focus();
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        prevIndex = (currentIndex - 1 + links.length) % links.length;
+        links[prevIndex]?.focus();
+        break;
+      case 'Tab':
+        if (!event.shiftKey && currentIndex === links.length - 1) {
+          event.preventDefault();
+          setIsMenuOpen(false);
+          buttonRef.current?.focus();
+        }
+        break;
+    }
+  };
 
   return (
     <header className="header">
@@ -72,7 +125,7 @@ export default function Header() {
           <button 
             ref={buttonRef}
             className="mobile-menu-button"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="nav-links"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -85,6 +138,7 @@ export default function Header() {
             id="nav-links"
             className={`nav-links ${isMenuOpen ? 'active' : ''}`}
             role="navigation"
+            onKeyDown={handleKeyDown}
           >
             <Link to="/" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('home')}</Link>
             <Link to="/about" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('about')}</Link>

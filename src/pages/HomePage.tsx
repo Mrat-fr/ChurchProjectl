@@ -1,4 +1,5 @@
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -10,8 +11,8 @@ export default function HomePage() {
           <h1>{t('welcome')}</h1>
           <p className="tagline">{t('tagline')}</p>
           <div className="hero-buttons">
-            <a href="/about" className="hero-button primary">{t('about')}</a>
-            <a href="/contact" className="hero-button secondary">{t('contact')}</a>
+            <Link to="/about" className="hero-button primary">{t('about')}</Link>
+            <Link to="/contact" className="hero-button secondary">{t('contact')}</Link>
           </div>
         </div>
       </section>

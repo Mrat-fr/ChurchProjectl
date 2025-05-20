@@ -1346,6 +1346,14 @@ body {
     max-height: calc(100vh - 60px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .nav-link {
@@ -1353,13 +1361,16 @@ body {
     text-align: left;
     padding: 1rem;
     border-radius: 0;
+    transition: background-color 0.2s;
   }
 
   @media (max-width: 768px) {
     .nav-links {
-      width: 100%;
-      background-color: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .nav-links.active {
+      display: flex;
     }
 
     .nav-link {
@@ -1370,7 +1381,8 @@ body {
       border-bottom: none;
     }
 
-    .nav-link:active {
+    .nav-link:active,
+    .nav-link:hover {
       background-color: #f3f4f6;
     }
 
@@ -1382,16 +1394,32 @@ body {
     .form-input,
     .submit-button,
     .lang-button {
-      min-height: 44px; /* iOS minimum touch target size */
+      min-height: 44px;
       min-width: 44px;
     }
 
-    /* Prevent text scaling issues */
-    .nav-link,
-    .hero-button,
-    .filter-button,
-    .form-input,
-    .submit-button {
-      -webkit-text-size-adjust: 100%;
+    /* Menu icon animation */
+    .mobile-menu-button[aria-expanded="true"] .menu-icon {
+      background-color: transparent;
+    }
+
+    .mobile-menu-button[aria-expanded="true"] .menu-icon::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    .mobile-menu-button[aria-expanded="true"] .menu-icon::after {
+      transform: rotate(-45deg);
+      bottom: 0;
+    }
+
+    /* Fix mobile navigation position */
+    .main-nav {
+      position: relative;
+    }
+
+    /* Prevent body scroll when menu is open */
+    body.menu-open {
+      overflow: hidden;
     }
   }
