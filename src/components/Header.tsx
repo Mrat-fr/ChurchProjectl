@@ -101,7 +101,7 @@ export default function Header() {
               <span>info@church.com</span>
             </a>
           </div>
-          <div className="header-actions">
+          <div className="header-actions desktop-only">
             <button
               onClick={toggleLanguage}
               className="lang-button"
@@ -147,6 +147,18 @@ export default function Header() {
             <Link to="/events" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('events')}</Link>
             <Link to="/gallery" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('gallery')}</Link>
             <Link to="/contact" className="nav-link" onClick={() => setIsMenuOpen(false)}>{t('contact')}</Link>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                toggleLanguage();
+                setIsMenuOpen(false);
+              }}
+              className="lang-button mobile-lang-button"
+              aria-label={`Switch to ${language === 'en' ? 'Tigrinya' : 'English'}`}
+              title={`Switch to ${language === 'en' ? 'Tigrinya' : 'English'}`}
+            >
+              {language === 'en' ? 'ትግርኛ' : 'English'}
+            </button>
           </div>
         </div>
       </nav>
